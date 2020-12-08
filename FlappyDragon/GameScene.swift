@@ -24,8 +24,11 @@ class GameScene: SKScene {
     var playerCategory: UInt32 = 1
     var enemyCategory: UInt32 = 2
     var scoreCategory: UInt32 = 4
+    var timer: Timer!
+    weak var gameViewController: GameViewController?
     
     override func didMove(to view: SKView) {
+        physicsWorld.contactDelegate = self
         addBackground()
         addFloor()
         addIntro()
@@ -133,6 +136,12 @@ class GameScene: SKScene {
         enemyBottom.physicsBody?.categoryBitMask = enemyCategory
         enemyBottom.physicsBody?.contactTestBitMask = playerCategory
         
+        let laser = SKNode()
+        laser.position = CGPoint(x: enemyTop.position.x + enemyWith/2, y: enemyTop.position.y - enemyTop.size.height/2 - enemiesDistance/2)
+        laser.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: enemiesDistance))
+        laser.physicsBody?.isDynamic = false
+        laser.physicsBody?.categoryBitMask = scoreCategory
+        
         let distance = size.width + enemyWith
         let duration = Double(distance)/velocity
         
@@ -142,9 +151,34 @@ class GameScene: SKScene {
         
         enemyTop.run(sequenceAction)
         enemyBottom.run(sequenceAction)
+        laser.run(sequenceAction)
         
         addChild(enemyTop)
         addChild(enemyBottom)
+        addChild(laser)
+    }
+    
+    func gameOver(){
+        timer.invalidate()
+        player.zRotation = 0
+        player.texture = SKTexture(imageNamed: "playerDead")
+        for node in children{
+            node.removeAllActions()
+        }
+        player.physicsBody?.isDynamic = false
+        gameFinished = true
+        gameStarted = false
+        
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { (time) in
+            let gameOverLabel = SKLabelNode(fontNamed: "Chalkduster")
+            gameOverLabel.fontColor = .red
+            gameOverLabel.fontSize = 40
+            gameOverLabel.text = "Gaver Over"
+            gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+            gameOverLabel.zPosition = 5
+            self.addChild(gameOverLabel)
+            self.restart = true
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -163,12 +197,17 @@ class GameScene: SKScene {
                 
                 gameStarted = true
                 
-                Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { (timer) in
+                timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { (timer) in
                     self.spawnEnemies()
                 }
             }  else {
                 player.physicsBody?.velocity = CGVector.zero
                 player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: flyForce))
+            }
+        } else {
+            if restart {
+                restart = false
+                gameViewController?.presentScene()
             }
         }
     }
@@ -177,6 +216,19 @@ class GameScene: SKScene {
         if gameStarted {
             let yVelocity = player.physicsBody!.velocity.dy * 0.001 as CGFloat
             player.zRotation = yVelocity
+        }
+    }
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        if gameStarted {
+            if contact.bodyA.categoryBitMask == scoreCategory || contact.bodyB.categoryBitMask == scoreCategory {
+                score += 1
+                scoreLabel.text = "\(score)"
+            } else if contact.bodyA.categoryBitMask == enemyCategory || contact.bodyB.categoryBitMask == enemyCategory {
+                gameOver()
+            }
         }
     }
 }

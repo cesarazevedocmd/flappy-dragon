@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        stage = view as! SKView
+        stage = view as? SKView
         stage.ignoresSiblingOrder = true
         
         presentScene()
@@ -24,7 +24,8 @@ class GameViewController: UIViewController {
     func presentScene(){
         let scene = GameScene(size: CGSize(width: 320, height: 568))
         scene.scaleMode = .aspectFill
-        stage.presentScene(scene)
+        scene.gameViewController = self
+        stage.presentScene(scene, transition: .doorsOpenVertical(withDuration: 1.0))
     }
     
     override var prefersStatusBarHidden: Bool {
