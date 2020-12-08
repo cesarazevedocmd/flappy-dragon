@@ -21,6 +21,9 @@ class GameScene: SKScene {
     var restart: Bool = false
     var score: Int = 0
     var flyForce: CGFloat = 30
+    var playerCategory: UInt32 = 1
+    var enemyCategory: UInt32 = 2
+    var scoreCategory: UInt32 = 4
     
     override func didMove(to view: SKView) {
         addBackground()
@@ -49,6 +52,8 @@ class GameScene: SKScene {
         invisbleFloor.physicsBody?.isDynamic = false
         invisbleFloor.position = CGPoint(x: self.size.width/2, y: self.size.height - gameArea)
         invisbleFloor.zPosition = 2
+        invisbleFloor.physicsBody?.categoryBitMask = enemyCategory
+        invisbleFloor.physicsBody?.contactTestBitMask = playerCategory
         addChild(invisbleFloor)
         
         let invisbleRoof = SKNode()
@@ -99,6 +104,7 @@ class GameScene: SKScene {
         scoreLabel.zPosition = 5
         scoreLabel.position = CGPoint(x: size.width/2, y: size.height - 100)
         scoreLabel.alpha = 0.8
+        
         addChild(scoreLabel)
     }
     
@@ -115,6 +121,8 @@ class GameScene: SKScene {
         enemyTop.zPosition = 1
         enemyTop.physicsBody = SKPhysicsBody(rectangleOf: enemyTop.size)
         enemyTop.physicsBody?.isDynamic = false
+        enemyTop.physicsBody?.categoryBitMask = enemyCategory
+        enemyTop.physicsBody?.contactTestBitMask = playerCategory
         
         let enemyBottom = SKSpriteNode(imageNamed: "enemybottom\(enemyNumber)")
         
@@ -122,6 +130,8 @@ class GameScene: SKScene {
         enemyBottom.zPosition = 1
         enemyBottom.physicsBody = SKPhysicsBody(rectangleOf: enemyBottom.size)
         enemyBottom.physicsBody?.isDynamic = false
+        enemyBottom.physicsBody?.categoryBitMask = enemyCategory
+        enemyBottom.physicsBody?.contactTestBitMask = playerCategory
         
         let distance = size.width + enemyWith
         let duration = Double(distance)/velocity
@@ -141,12 +151,15 @@ class GameScene: SKScene {
         if !gameFinished {
             if !gameStarted {
                 intro.removeFromParent()
-                gameStarted = true
+                addScore()
                 
                 player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2 - 10)
                 player.physicsBody?.isDynamic = true
                 player.physicsBody?.allowsRotation = true
                 player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: flyForce))
+                player.physicsBody?.categoryBitMask = playerCategory
+                player.physicsBody?.contactTestBitMask = scoreCategory
+                player.physicsBody?.collisionBitMask = enemyCategory
                 
                 gameStarted = true
                 
