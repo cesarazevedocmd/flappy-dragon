@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8DC9143A257FF9DE00A762C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91439257FF9DE00A762C1 /* AppDelegate.swift */; };
-		8DC9143C257FF9DE00A762C1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DC9143B257FF9DE00A762C1 /* GameScene.sks */; };
-		8DC9143E257FF9DE00A762C1 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DC9143D257FF9DE00A762C1 /* Actions.sks */; };
 		8DC91440257FF9DE00A762C1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9143F257FF9DE00A762C1 /* GameScene.swift */; };
 		8DC91442257FF9DE00A762C1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91441257FF9DE00A762C1 /* GameViewController.swift */; };
 		8DC91445257FF9DE00A762C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC91443257FF9DE00A762C1 /* Main.storyboard */; };
@@ -17,13 +15,12 @@
 		8DC91452257FFA8E00A762C1 /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DC9144F257FFA8E00A762C1 /* hit.mp3 */; };
 		8DC91453257FFA8E00A762C1 /* score.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DC91450257FFA8E00A762C1 /* score.mp3 */; };
 		8DC91454257FFA8E00A762C1 /* music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8DC91451257FFA8E00A762C1 /* music.m4a */; };
+		8DC91459257FFBF000A762C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC91458257FFBF000A762C1 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8DC91436257FF9DE00A762C1 /* FlappyDragon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyDragon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC91439257FF9DE00A762C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DC9143B257FF9DE00A762C1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		8DC9143D257FF9DE00A762C1 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		8DC9143F257FF9DE00A762C1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		8DC91441257FF9DE00A762C1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8DC91444257FF9DE00A762C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -32,6 +29,7 @@
 		8DC9144F257FFA8E00A762C1 /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
 		8DC91450257FFA8E00A762C1 /* score.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = score.mp3; sourceTree = "<group>"; };
 		8DC91451257FFA8E00A762C1 /* music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.m4a; sourceTree = "<group>"; };
+		8DC91458257FFBF000A762C1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,14 +63,13 @@
 			isa = PBXGroup;
 			children = (
 				8DC91439257FF9DE00A762C1 /* AppDelegate.swift */,
-				8DC9143B257FF9DE00A762C1 /* GameScene.sks */,
-				8DC9143D257FF9DE00A762C1 /* Actions.sks */,
 				8DC9143F257FF9DE00A762C1 /* GameScene.swift */,
 				8DC91456257FFA9600A762C1 /* Files */,
 				8DC91441257FF9DE00A762C1 /* GameViewController.swift */,
 				8DC91443257FF9DE00A762C1 /* Main.storyboard */,
 				8DC91446257FF9E100A762C1 /* Assets.xcassets */,
 				8DC91448257FF9E100A762C1 /* Info.plist */,
+				8DC91458257FFBF000A762C1 /* LaunchScreen.storyboard */,
 			);
 			path = FlappyDragon;
 			sourceTree = "<group>";
@@ -145,11 +142,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC91445257FF9DE00A762C1 /* Main.storyboard in Resources */,
+				8DC91459257FFBF000A762C1 /* LaunchScreen.storyboard in Resources */,
 				8DC91454257FFA8E00A762C1 /* music.m4a in Resources */,
 				8DC91453257FFA8E00A762C1 /* score.mp3 in Resources */,
-				8DC9143C257FF9DE00A762C1 /* GameScene.sks in Resources */,
 				8DC91447257FF9E100A762C1 /* Assets.xcassets in Resources */,
-				8DC9143E257FF9DE00A762C1 /* Actions.sks in Resources */,
 				8DC91452257FFA8E00A762C1 /* hit.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
