@@ -175,7 +175,7 @@ class GameScene: SKScene {
             let gameOverLabel = SKLabelNode(fontNamed: "Chalkduster")
             gameOverLabel.fontColor = .red
             gameOverLabel.fontSize = 40
-            gameOverLabel.text = "Gaver Over"
+            gameOverLabel.text = "Game Over"
             gameOverLabel.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
             gameOverLabel.zPosition = 5
             self.addChild(gameOverLabel)
